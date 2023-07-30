@@ -1,3 +1,4 @@
+import traceback
 from abc import *
 
 from LogLevels import LogLevels
@@ -27,7 +28,7 @@ class LoggerSink(ABC):
         return int(self.required_log_level) >= int(LogLevels.ERROR)
 
     @abstractmethod
-    def handle_exception(self, exception: Exception):
+    def handle_exception(self, exception: Exception, trace: traceback, fields: []):
         return int(self.required_log_level) >= int(LogLevels.EXCEPTION)
 
     @abstractmethod

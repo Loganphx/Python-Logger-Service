@@ -1,3 +1,5 @@
+import traceback
+
 from LoggerSink import LoggerSink
 
 
@@ -16,7 +18,7 @@ class SqlSink(LoggerSink):
     def handle_error(self, message: str):
         pass
 
-    def handle_exception(self, exception: Exception):
+    def handle_exception(self, exception: Exception, trace: traceback, fields: []):
         pass
 
     def serialize_to_json(self):

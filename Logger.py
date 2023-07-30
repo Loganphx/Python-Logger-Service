@@ -1,3 +1,5 @@
+import traceback
+
 from LoggerSink import LoggerSink
 
 
@@ -31,6 +33,6 @@ class Logger:
             sink.handle_error(message)
 
     @staticmethod
-    def handle_exception(exception: Exception):
+    def handle_exception(exception: Exception, trace: traceback, fields: [] = None):
         for sink in Logger.instance.sinks:
-            sink.handle_exception(exception)
+            sink.handle_exception(exception, trace, fields)

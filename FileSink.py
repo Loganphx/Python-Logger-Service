@@ -1,3 +1,4 @@
+import traceback
 from datetime import datetime
 
 from LogLevels import LogLevels
@@ -37,7 +38,7 @@ class FileSink(LoggerSink):
         file.close()
         pass
 
-    def handle_exception(self, exception: Exception):
+    def handle_exception(self, exception: Exception, trace: traceback, fields: []):
         file = open(self.file_path, "a")
         file.write(f"Exception, {exception}, {datetime.now()}\n")
         file.close()
