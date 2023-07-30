@@ -1,0 +1,17 @@
+LogType, Message, TimeStamp
+Log, Logger Test,  2023-07-29 20:48:23.494955
+Warning, Test Warning, 2023-07-29 20:48:23.494955
+Error, Test Error, 2023-07-29 20:48:23.495454
+Exception, Test Exception, 2023-07-29 20:48:23.495953
+Log, Logger Test,  2023-07-29 20:48:40.466531
+Warning, Test Warning, 2023-07-29 20:48:40.466531
+Error, Test Error, 2023-07-29 20:48:40.467545
+Exception, Test Exception, 2023-07-29 20:48:40.468051
+Log, Logger Test,  2023-07-29 20:49:40.430032
+Warning, Test Warning, 2023-07-29 20:49:40.430538
+Error, Test Error, 2023-07-29 20:49:40.430538
+Exception, Test Exception, 2023-07-29 20:49:40.431038
+Log, Logger Test,  2023-07-29 20:50:38.249044
+Warning, Test Warning, 2023-07-29 20:50:38.249543
+Error, Test Error, 2023-07-29 20:50:38.249543
+Exception, Test Exception, 2023-07-29 20:50:38.250047
