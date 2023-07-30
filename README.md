@@ -9,10 +9,31 @@ Log Levels
     ERROR
     EXCEPTION
 ### Logger
-    
+   ```py
     # Only needs to created once as it creates an singleton/instance that is accessable from anywhere
     logger = new Logger()
-    
+   ```
+   
+   ```py
+    Logger.handle_log("Test Log")
+   ```
+
+   ```py
+    Logger.handle_warning("Test Warning")
+   ```
+
+   ```py
+    Logger.handle_error("Error - Something Went Wrong")
+   ```
+
+
+   ```py
+    try:
+        raise Exception("File input.txt does not exist")
+    exception Exception as exception 
+        Logger.handle_exception(exception, traceback.format_exc())
+   ```
+
 ## Sink Types
 FileSink (.txt) - Outputs logs to a file in format [LogType, LogMessage, TimeStamp]
    ```py
