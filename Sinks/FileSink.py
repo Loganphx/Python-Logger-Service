@@ -1,8 +1,8 @@
 import traceback
 from datetime import datetime
 
-from LogLevels import LogLevels
-from LoggerSink import LoggerSink
+from Sinks.LogLevels import LogLevels
+from Sinks.LoggerSink import LoggerSink
 
 
 class FileSink(LoggerSink):
@@ -13,11 +13,17 @@ class FileSink(LoggerSink):
     def __init__(self, required_log_level: LogLevels, filePath: str):
         super().__init__(required_log_level)
         self.file_path = filePath
+        # this is done to generate the file if it doesn't exist
+        file = open(self.file_path, "a")
+        file.close()
+
         file = open(self.file_path, "r+")
-        lines = file.readlines()
-        if len(lines) == 0:
-            if filePath.endswith(".csv"):
+
+        if filePath.endswith(".csv"):
+            lines = file.readlines()
+            if len(lines) == 0:
                 file.write("LogType, Message, TimeStamp\n")
+
         file.close()
 
     def handle_log(self, message: str):

@@ -1,6 +1,6 @@
 import traceback
 
-from LoggerSink import LoggerSink
+from Sinks.LoggerSink import LoggerSink
 
 
 class SqlSink(LoggerSink):

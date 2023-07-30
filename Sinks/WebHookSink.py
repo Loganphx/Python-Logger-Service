@@ -3,31 +3,24 @@ import traceback
 
 import requests
 
-from LogLevels import LogLevels
-from LoggerSink import LoggerSink
+from Sinks.LogLevels import LogLevels
+from Sinks.LoggerSink import LoggerSink
 
 
-class DiscordWebHookSink(LoggerSink):
+class WebHookSink(LoggerSink):
     webhook_url: str
-    webhook_username: str
-    use_embeds: bool
 
-    def __init__(self, requiredLogLevel: LogLevels, webhook_url: str, webhook_username: str, use_embeds: bool):
+    def __init__(self, requiredLogLevel: LogLevels, webhook_url: str):
         super().__init__(requiredLogLevel)
         self.webhook_url = webhook_url
-        self.webhook_username = webhook_username
-        self.use_embeds = use_embeds
 
     def serialize_to_json(self):
         data = super().serialize_to_json()
         data["webhook_url"] = self.webhook_url
-        data["webhook_username"] = self.webhook_username
-        data["use_embeds"] = self.use_embeds
         return data
 
     def post_to_webhook(self, message: str):
-        json_data = {"content": f"{message}", "username": f"{self.webhook_username}"}
-        if self.use_embeds: json_data["embeds"] = {"description": "text in embed", "title": "embed title", "color": 1752220}
+        json_data = {"content": message}
 
         result = requests.post(
             self.webhook_url, data=json.dumps(json_data),
@@ -42,16 +35,8 @@ class DiscordWebHookSink(LoggerSink):
 
     def post_to_webhook_exception(self, exception: Exception, trace: traceback, fields: []):
 
-        json_data = {"content": f"", "username": f"{self.webhook_username}",
-                     "embeds": [{'title': f"{exception}!", 'description': str(trace).replace("Traceback (most recent call last):", ""), "color": 10038562}]}
-        if fields is not None:
-            fieldList = list()
-            for field in fields:
-                print(field)
-                fieldList.append({"name": field["name"], "value": field["value"]})
-            json_data["embeds"][0]["fields"] = fieldList
+        json_data = {"content": f"{str(exception)}"}
 
-        print(json_data)
         result = requests.post(
             self.webhook_url, data=json.dumps(json_data),
             headers={'Content-Type': 'application/json'}

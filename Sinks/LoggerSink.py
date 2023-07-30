@@ -1,7 +1,7 @@
 import traceback
 from abc import *
 
-from LogLevels import LogLevels
+from Sinks.LogLevels import LogLevels
 
 
 class LoggerSink(ABC):
@@ -13,7 +13,7 @@ class LoggerSink(ABC):
 
     @abstractmethod
     def serialize_to_json(self):
-        return {"name": type(self).__name__, "required_log_level" : str(self.required_log_level)}
+        return {"name": type(self).__name__, "required_log_level": str(self.required_log_level)}
 
     @abstractmethod
     def handle_log(self, message: str):
