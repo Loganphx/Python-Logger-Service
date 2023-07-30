@@ -30,7 +30,7 @@ Log Levels
    ```py
     try:
         raise Exception("File input.txt does not exist")
-    exception Exception as exception 
+    except Exception as exception 
         Logger.handle_exception(exception, traceback.format_exc())
    ```
 
