@@ -13,6 +13,7 @@ class Logger:
     def subscribe_sink(self, sink: LoggerSink):
         print(f"Subscribing Sink: {str(sink)}")
         self.sinks.append(sink)
+        return self
 
     @staticmethod
     def handle_log(message: str):

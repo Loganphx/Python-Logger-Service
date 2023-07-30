@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from LogLevels import LogLevels
 from LoggerSink import LoggerSink
 
 
@@ -8,8 +9,8 @@ class FileSink(LoggerSink):
 
     file_path: str
 
-    def __init__(self, filePath: str):
-        super().__init__()
+    def __init__(self, required_log_level: LogLevels, filePath: str):
+        super().__init__(required_log_level)
         self.file_path = filePath
         file = open(self.file_path, "r+")
         lines = file.readlines()
